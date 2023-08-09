@@ -5,16 +5,17 @@ from odoo.tests.common import TransactionCase
 
 
 class TestResPartnerNace(TransactionCase):
-    def setUp(self):
-        super(TestResPartnerNace, self).setUp()
-        self.nace = self.env["res.partner.nace"].create(
+    @classmethod
+    def setUpClass(cls):
+        super(TestResPartnerNace, cls).setUpClass()
+        cls.nace = cls.env["res.partner.nace"].create(
             {"name": "nace_test", "code": "code_nace"}
         )
-        self.child_nace = self.env["res.partner.nace"].create(
+        cls.child_nace = cls.env["res.partner.nace"].create(
             {
                 "name": "nace_child",
                 "code": "code_child",
-                "parent_id": self.nace.id,
+                "parent_id": cls.nace.id,
             }
         )
 
